@@ -266,14 +266,14 @@ void autonomous(void) {
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
 //Do not change the below
-PIDDataSet TestPara={3.8,0.1, 0.1};
+PIDDataSet TestPara={3.8,0.1,0.};
 Zeroing(true,true);
 
 //can start editing if nessary
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
-  MoveEncoderPID(TestPara, -70, 200, 0.4, 0, true);
+  redSafeAWP();
 }
 
 if(AutoSelectorVal==2)// Safe awp
