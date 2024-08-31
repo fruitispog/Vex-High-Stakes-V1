@@ -17,13 +17,21 @@ void AWP(){
 
 void redAWP(){
     PIDDataSet TestPara={1.5,0.1,0.15}; //initialize
-    MoveEncoderPID(TestPara, -100, 8.5, 0.4, 0, true);
+    MoveEncoderPID(TestPara, -100, 9.5, 0.4, 0, true);
     Clamp.set(true);
     TurnMaxTimePID(TestPara, 7.5, 0.6, true);
-    MoveEncoderPID(TestPara, 100, 34, 0.4, 7.5, false);
-    MoveEncoderPID(TestPara, 65, 11.4, 0.4, 7.5, false);
+    MoveEncoderPID(TestPara, 100, 35, 0.4, 7.5, false);
+    MoveEncoderPID(TestPara, 55, 11.4, 0.4, 7.5, true);
     Pistake.set(false);
+    MoveEncoderPID(TestPara, 100, 6.5, 0.4, 7.5, true );
     TurnMaxTimePID(TestPara, 120, 0.7, true);
+    MoveEncoderPID(TestPara, -100, 12, 0.4, 120, false);
+    RunRoller(100);
+    MoveEncoderPID(TestPara, -100, 15, 0.4, 120, true );
+    TurnMaxTimePID(TestPara, -17.5, 0.7, true);
+    RunRoller(0);
+    MoveEncoderPID(TestPara, -100, 35, 0.4, -17.5, true );
+
 }
 
 void redSafeAWP() {
