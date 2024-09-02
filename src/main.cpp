@@ -38,7 +38,8 @@ void pre_auton(void) {
   Inversion_Constant=1;
   lift.setStopping(brake);
    EXIT=false;
-  Pistake.set(true);
+   
+  Pistake.set(false);
   OPMECH.set(false);
   Clamp.set(false);
   PX=0;
@@ -334,7 +335,7 @@ return 0;
 }
 int V;
 int ButtonPressingB=0,BTaskActiv=0;
-bool Check = false;
+bool Check = true;
 bool discDetected = false;
   unsigned counter = 0;
 bool rightcolor;
@@ -359,12 +360,11 @@ int ATask(void)
     // Handle Button B press and task activation/deactivation
     if (BTaskActiv == 0 && Controller1.ButtonB.pressing() && ButtonPressingB == 0) {
         Check = false;
+        discDetected = false;
         ButtonPressingB = 1;  // Button is now pressed
         BTaskActiv = 1;        // Task is now active
     } 
-    else if (!Controller1.ButtonB.pressing()) {
-        ButtonPressingB = 0;
-    } 
+    else if(!Controller1.ButtonB.pressing())ButtonPressingB=0;
     else if (BTaskActiv == 1 && Controller1.ButtonB.pressing() && ButtonPressingB == 0) {
         Check = true;
         ButtonPressingB = 1;   // Button is now pressed
@@ -394,7 +394,7 @@ int ATask(void)
         
 
         if (discDetected&&rightcolor) {
-            if (Roller.position(degrees) >= -1300) {
+            if (Roller.position(degrees) >= -1400) {
                 RunRoller(-100);
             } else {
                 discDetected = false;
