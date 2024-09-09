@@ -6,5 +6,5 @@ extern int AutoSelectorVal;
 extern void DisplayAutoSelector();
 extern void DisplayWords();
 extern void UpdateDynamic();
-extern int Inversion_Constant;
+extern bool Inversion_Constant = false;
 #endif

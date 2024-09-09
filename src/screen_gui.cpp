@@ -77,6 +77,7 @@ int AutoSelectorVal;
 
 void UpdateDynamic(void)
 {
+  Inversion_Constant=false;
   DisplayAutoSelector();
   DisplayWords();
   Brain.Screen.setFillColor("#f8b195");
@@ -184,7 +185,7 @@ Brain.Screen.setFont(monoM);
   }
 
 if(AutoSelectorVal==7){
-  Inversion_Constant=-1;
+  Inversion_Constant=true;
   Brain.Screen.setCursor(3,10);
 Brain.Screen.print("INVERSED");
  /* Brain.Screen.drawRectangle(187,175,100,50);

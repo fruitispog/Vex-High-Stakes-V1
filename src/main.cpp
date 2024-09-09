@@ -31,11 +31,11 @@ competition Competition;
 /*  function is only called once after the V5 has been powered on and        */
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
-int Inversion_Constant;
+
 bool SP;
 bool EXIT;
 void pre_auton(void) {
-  Inversion_Constant=1;
+  
   lift.setStopping(brake);
    EXIT=false;
    
@@ -113,8 +113,8 @@ Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
-if(Inversion_Constant==1)Brain.Screen.print("Regular");
-else if(Inversion_Constant ==-1)Brain.Screen.print("Inversed");
+if(Inversion_Constant==false)Brain.Screen.print("red");
+else if(Inversion_Constant == true)Brain.Screen.print("blue");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("AWP");
 Brain.Screen.setFont(monoM);
@@ -133,8 +133,8 @@ Brain.Screen.setFillColor(black);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("MATCHLOAD");
-if(Inversion_Constant==1)Brain.Screen.print("Regular");
-else if(Inversion_Constant ==-1)Brain.Screen.print("Inversed");
+if(Inversion_Constant==false)Brain.Screen.print("red");
+else if(Inversion_Constant == true)Brain.Screen.print("Blue");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("Risky");
 Brain.Screen.setFont(monoM);
@@ -152,8 +152,8 @@ Brain.Screen.setFillColor(black);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("GOAL SIDE");
-if(Inversion_Constant==1)Brain.Screen.print("Regular");
-else if(Inversion_Constant ==-1)Brain.Screen.print("Inversed");
+if(Inversion_Constant==false)Brain.Screen.print("Red");
+else if(Inversion_Constant == true)Brain.Screen.print("Blue");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("n/a");
 Brain.Screen.setFont(monoM);  
@@ -171,8 +171,8 @@ Brain.Screen.setFillColor(black);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("MATCHLOAD");
-if(Inversion_Constant==1)Brain.Screen.print("Regular");
-else if(Inversion_Constant ==-1)Brain.Screen.print("Inversed");
+if(Inversion_Constant==false)Brain.Screen.print("Red");
+else if(Inversion_Constant == true)Brain.Screen.print("Blue");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("Safe");
 Brain.Screen.setFont(monoM); 
@@ -190,8 +190,8 @@ Brain.Screen.setFillColor(black);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("GOAL SIDE");
-if(Inversion_Constant==1)Brain.Screen.print("Regular");
-else if(Inversion_Constant ==-1)Brain.Screen.print("Inversed");
+if(Inversion_Constant==false)Brain.Screen.print("RED");
+else if(Inversion_Constant == true)Brain.Screen.print("Blue");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("Risky AWP");
 Brain.Screen.setFont(monoM); 
@@ -208,8 +208,8 @@ Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("MATCHLOAD");
-if(Inversion_Constant==1)Brain.Screen.print("Regular");
-else if(Inversion_Constant ==-1)Brain.Screen.print("Inversed");
+if(Inversion_Constant==false)Brain.Screen.print("Red");
+else if(Inversion_Constant == true)Brain.Screen.print("Blue");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("ONLY AWP");
 Brain.Screen.setFont(monoM); 
@@ -220,7 +220,7 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==7){
   //Inversion_Constant=-1;
   Brain.Screen.setCursor(3,10);
-Brain.Screen.print("INVERSED");
+Brain.Screen.print("blue");
  /* Brain.Screen.drawRectangle(187,175,100,50);
   Brain.Screen.setCursor(11,22);
   Brain.Screen.print("Skills");
@@ -267,7 +267,7 @@ void autonomous(void) {
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
 //Do not change the below
-PIDDataSet TestPara={3.8,0.1,0.};
+PIDDataSet TestPara={3.8,0.1,0.1};
 Zeroing(true,true);
 
 //can start editing if nessary
@@ -285,7 +285,7 @@ if(AutoSelectorVal==2)// Safe awp
 
 if(AutoSelectorVal==3)//Risky
 {
-  redSuperSafe();
+  AWP();
   } 
 
 if(AutoSelectorVal==4)// risky AWP
@@ -309,7 +309,7 @@ MoveEncoderPID(TestPara, -100, 28, 0.4, -106, true); //grab ring 2
 
 if(AutoSelectorVal==7)//DO NOT USE SLOT 7 RESERVED FOR TURN INVERSION
 {   
- 
+  Inversion_Constant= false;
 
 }
 //MoveTimePID(TestPara, -100, 0.5,0.1,-40,true);//score 2nd triball
@@ -343,10 +343,31 @@ bool waiting = false;
 int rollerStopTime = 500; // Time to stop in milliseconds
 int delayStartTime = 0;
 bool rollerSpinning =false;
+
+int arraynumber;
+int arraynumber2;
+int arraynumber3;
+int arrarnumber4;
 vex::timer Timer;
 int ATask(void)
 {
+  
   double pow;
+  if(Inversion_Constant == true)
+  {
+    arraynumber = 350;
+    arraynumber2 = 10;
+    arraynumber3 = 200;
+    arrarnumber4 = 270;
+
+  }
+  else if (Inversion_Constant == false)
+  {
+    arraynumber = 200;
+    arraynumber2 = 270;
+    arraynumber3 =350;
+    arrarnumber4 = 10;
+  }
   
   OpSens.integrationTime(5);
   OpSens.setLightPower(100,percent);
@@ -358,7 +379,7 @@ int ATask(void)
     hue = OpSens.hue();
 
     // Handle Button B press and task activation/deactivation
-    if (BTaskActiv == 0 && Controller1.ButtonB.pressing() && ButtonPressingB == 0) {
+     if (BTaskActiv == 0 && Controller1.ButtonB.pressing() && ButtonPressingB == 0) {
         Check = false;
         discDetected = false;
         ButtonPressingB = 1;  // Button is now pressed
@@ -373,14 +394,14 @@ int ATask(void)
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    if (hue >= 200 && hue <= 270 && !discDetected) {
+    if (hue >= arraynumber && hue <= arraynumber2 && !discDetected && OpSens.isNearObject() == true) {
             discDetected = true;
             rightcolor =true;
             
             
             Roller.resetPosition();
         }
-    else if(hue >= 350 && hue<=10 && !discDetected){
+    else if(hue >= arraynumber3 && hue<=arrarnumber4 && !discDetected){
 
         discDetected = true;
         rightcolor =false;
@@ -394,7 +415,7 @@ int ATask(void)
         
 
         if (discDetected&&rightcolor) {
-            if (Roller.position(degrees) >= -1400) {
+            if (Roller.position(degrees) >= -1500) {
                 RunRoller(-100);
             } else {
                 discDetected = false;

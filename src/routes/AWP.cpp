@@ -8,7 +8,9 @@
 
 void AWP(){
     //blue side
-    
+    PIDDataSet TestPara={1.5,0.1,0.15};
+    MoveEncoderPID(TestPara, -100, 9.5, 0.4, 0, true);
+    Clamp.set(true);
 
 
 
@@ -48,34 +50,37 @@ void redAWP(){
 
 void redSafeAWP() {
    PIDDataSet TestPara={1.5,0.1,0.15}; //initialize
+    lift.spinToPosition(0.26, degrees, false);
     MoveEncoderPID(TestPara, -100, 9.5, 0.4, 0, true);
     Clamp.set(true);
-    TurnMaxTimePID(TestPara, 6.5, 0.3, true);
-    MoveEncoderPID(TestPara, 100, 39, 0.4, 6.5, false);
-    MoveEncoderPID(TestPara, 55, 11.4, 0.4, 6.5, true);
+    TurnMaxTimePID(TestPara, 6.34, 0.3, true);
+    MoveEncoderPID(TestPara, 100, 33, 0.4, 6.34, false);
+    MoveEncoderPID(TestPara, 55, 15.4, 0.4, 6.34, true);
+    lift.spinToPosition(20, degrees, false);
     Pistake.set(true);
     Clamp.set(false);
     RunRoller(100);
-    MoveEncoderPID(TestPara, 100, 6.5, 0.4, 7.5, true );
-    TurnMaxTimePID(TestPara, 180, 0.8, true);
-    MoveEncoderPID(TestPara, -100, 14, 0.3, 180, true);
-    TurnMaxTimePID(TestPara, 120, 0.5, true);
-    MoveEncoderPID(TestPara, -80, 27, 0.3, 120, true);
-    TurnMaxTimePID(TestPara, -10, 0.6, true);
-    MoveEncoderPID(TestPara, -100, 30, 0.3, -10, true);
+    MoveEncoderPID(TestPara, 100, 6.5, 0.4, 6.34, true );
+    TurnMaxTimePID(TestPara, 170, 0.8, true);
+    MoveEncoderPID(TestPara, -100,15.8 , 0.3, 170, true);
+    TurnMaxTimePID(TestPara, 130, 0.5, true);
+    MoveEncoderPID(TestPara, -90, 14, 0.3, 130, true);
+    TurnMaxTimePID(TestPara, 5, 0.6, true);
+    MoveEncoderPID(TestPara, -100, 23, 0.3, 5, true);
     TurnMaxTimePID(TestPara, -28, 0.7, true);
     
-    MoveEncoderPID(TestPara, -100, 47, 0.4, -28, true );
+    MoveEncoderPID(TestPara, -100, 43, 0.4, -28, true );
     RunRoller(0);
     OPMECH.set(true);
-    MoveEncoderPID(TestPara, -40, 10, 0.5, -28, true);
+    MoveEncoderPID(TestPara, -46, 5, 0.5, -28, true);
     RunRoller(100);
     OPMECH.set(false);
     wait(400,msec);
     MoveEncoderPID(TestPara, 70, 15, 0.3,0,false );
+    lift.spinToPosition(-25, degrees, false);
     MoveEncoderPID(TestPara, 100, 12, 0.3, -70, true);
     MoveEncoderPID(TestPara, -100, 10, 0.3, -70, true);
-    lift.spinToPosition(-1000, degrees, false);
+    
 
 
 
