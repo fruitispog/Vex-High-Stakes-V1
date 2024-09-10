@@ -50,7 +50,7 @@ void redAWP(){
 
 void redSafeAWP() {
    PIDDataSet TestPara={1.5,0.1,0.15}; //initialize
-    lift.spinToPosition(0.26, degrees, false);
+    lift.spinToPosition(.26, degrees, false);
     MoveEncoderPID(TestPara, -100, 9.5, 0.4, 0, true);
     Clamp.set(true);
     TurnMaxTimePID(TestPara, 6.34, 0.3, true);
@@ -72,7 +72,7 @@ void redSafeAWP() {
     MoveEncoderPID(TestPara, -100, 43, 0.4, -28, true );
     RunRoller(0);
     OPMECH.set(true);
-    MoveEncoderPID(TestPara, -46, 5, 0.5, -28, true);
+    MoveEncoderPID(TestPara, -46, 9, 0.5, -28, true);
     RunRoller(100);
     OPMECH.set(false);
     wait(400,msec);
