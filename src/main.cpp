@@ -415,8 +415,10 @@ int ATask(void)
         
 
         if (discDetected&&rightcolor) {
+          cout<<"disdetected and its the right colour"<<endl;
             if (Roller.position(degrees) >= -1500) {
                 RunRoller(-100);
+                cout<<"redirecting"<<endl;
             } else {
                 discDetected = false;
                 
