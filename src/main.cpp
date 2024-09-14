@@ -34,6 +34,7 @@ competition Competition;
 
 bool SP;
 bool EXIT;
+bool Inversion_Constant;
 void pre_auton(void) {
   
   lift.setStopping(brake);
@@ -49,6 +50,7 @@ void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   wait(1000,msec);
   vexcodeInit();
+  
 Gyro.calibrate();
 
 //Ensure Robot Launch Position is set before auto proceeds, once plugged into field control,
@@ -290,7 +292,7 @@ if(AutoSelectorVal==3)//Risky
 
 if(AutoSelectorVal==4)// risky AWP
 {
-  ringquad();
+  blueSafeAWP();
 }
 
 if(AutoSelectorVal==5)// 
