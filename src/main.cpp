@@ -281,13 +281,13 @@ if(AutoSelectorVal==1)//Quali close 6 triball auto
 
 if(AutoSelectorVal==2)// Safe awp
 {
-  redAWP();
+  RedRingBlueMogo();
 
 }
 
 if(AutoSelectorVal==3)//Risky
 {
-  blueAWP();
+  BlgueRingRedMogo();
   } 
 
 if(AutoSelectorVal==4)// risky AWP

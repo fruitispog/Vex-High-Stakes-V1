@@ -8,7 +8,8 @@
 
 
 
-void redAWP(){
+void  RedRingBlueMogo(){
+    // corner swipe 4 ring safe
     PIDDataSet TestPara={1.5,0.1,0.15}; //initialize
     lift.resetPosition();
     MoveEncoderPID(TestPara, -100, 9.5, 0.4, 0, true);
@@ -152,7 +153,8 @@ void blue9PTRing() {
 
 
 }
-void blueAWP(){
+void BlueRingRedMogo(){
+    //Corner swipe 4 ring safe
     PIDDataSet TestPara={1.5,0.1,0.15}; //initialize
     MoveEncoderPID(TestPara, -100, 11.5, 0.4, 0, true); 
     Clamp.set(true); //Dunk

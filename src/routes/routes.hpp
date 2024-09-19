@@ -6,9 +6,9 @@
 */
 
 extern void AWP();
-extern void redAWP();
+extern void RedRingBlueMogo();
 extern void Red9PTRing();
 extern void redSuperSafe();
 extern void blue9PTRing();
-extern void blueAWP();
+extern void BlueRingRedMogo();
 #endif
