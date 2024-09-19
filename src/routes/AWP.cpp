@@ -228,10 +228,35 @@ void blueAWP(){
     lift.spinToPosition(-1000, degrees, false);
     MoveEncoderPID(TestPara, 70, 15, 0.3,0,false );
 
-    
+    wait(300,msec);
+    MoveEncoderPID(TestPara, 70, 7, 0.3,30.5, true );
+    MoveEncoderPID(TestPara, 50, 8, 0.3,0,false );
+
+  
+    TurnMaxTimePID(TestPara, -80, 0.7, true);
+    doinker.set(true);
+    MoveEncoderPID(TestPara, -100, 39.5, 0.4, -80, true);
+    RunRoller(0);
+   
+    MoveEncoderPID(TestPara, -100, 18.4, 0.4, -80, true);
+    wait(100, msec);
+    TurnMaxTimePID(TestPara, -200, 0.46, true);
+    RunRoller(-100);
+    TurnMaxTimePID(TestPara, -220, 0.2, true);
+    doinker.set(false);
+    TurnMaxTimePID(TestPara, -88, 0.4, true);
+    RunRoller(100);
+    MoveEncoderPID(TestPara, -95, 19, 0.3, -88, true);
+    wait(200, msec);
+    MoveEncoderPID(TestPara, 100, 50, 0.3, -88, true);
+    lift.resetPosition();
+    lift.spinToPosition(-1000, degrees, false);
+    MoveEncoderPID(TestPara, -100, 5, 0.3, 98, true);
+    MoveEncoderPID(TestPara, -100, 23, 0.3, 98, true);
+    lift.spinToPosition(20, degrees, false);
     
 
-    MoveEncoderPID(TestPara, 100, 12, 0.3, 70, true);
-    MoveEncoderPID(TestPara, -100, 10, 0.3, 70, true);
+   // MoveEncoderPID(TestPara, 100, 12, 0.3, 70, true);
+    //MoveEncoderPID(TestPara, -100, 10, 0.3, 70, true);
 }
     
