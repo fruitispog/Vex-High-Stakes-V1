@@ -41,15 +41,15 @@ void redAWP(){
     lift.spinToPosition(90, degrees, false);
     Pistake.set(true);
     Clamp.set(false);
-    MoveEncoderPID(TestPara, 100, 2, 0.4, 4.2, true );
-    TurnMaxTimePID(TestPara, 120, 0.5, true);
-    MoveEncoderPID(TestPara, -100, 12, 0.4, 120, false);
+    MoveEncoderPID(TestPara, 100, 2, 0.3, 4.2, true );
+    TurnMaxTimePID(TestPara, 120, 0.37, true);
+    MoveEncoderPID(TestPara, -100, 12, 0.3, 120, false);
     RunRoller(100);
-    MoveEncoderPID(TestPara, -100, 15, 0.4, 120, true );
+    MoveEncoderPID(TestPara, -100, 15, 0.3, 120, true );
     TurnMaxTimePID(TestPara, -30.5, 0.7, true);
     OPMECH.set(true);
 
-    MoveEncoderPID(TestPara, -100, 55.5, 0.4, -30.5, true );
+    MoveEncoderPID(TestPara, -100, 55.5, 0.3, -30.5, true );
     RunRoller(0);
     MoveEncoderPID(TestPara, -65, 6, 0.5, -30.5, true);
     RunRoller(100);
@@ -61,10 +61,10 @@ void redAWP(){
   
     TurnMaxTimePID(TestPara, 80, 0.7, true);
     doinker.set(true);
-    MoveEncoderPID(TestPara, -100, 39.5, 0.4, 80, true);
+    MoveEncoderPID(TestPara, -100, 39.5, 0.3, 80, true);
     RunRoller(0);
    
-    MoveEncoderPID(TestPara, -100, 18.4, 0.4, 80, true);
+    MoveEncoderPID(TestPara, -100, 18.4, 0.3, 80, true);
     wait(100, msec);
     TurnMaxTimePID(TestPara, 200, 0.46, true);
     RunRoller(-100);
@@ -72,7 +72,7 @@ void redAWP(){
     doinker.set(false);
     TurnMaxTimePID(TestPara, 88, 0.4, true);
     RunRoller(100);
-    MoveEncoderPID(TestPara, -95, 19, 0.3, 88, true);
+    MoveEncoderPID(TestPara, -100, 19, 0.3, 88, true);
     wait(200, msec);
     MoveEncoderPID(TestPara, 100, 50, 0.3, 88, true);
     lift.resetPosition();
