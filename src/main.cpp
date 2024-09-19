@@ -297,7 +297,8 @@ if(AutoSelectorVal==4)// risky AWP
 
 if(AutoSelectorVal==5)// 
 {
-  MogoRushQual();
+ blueAWP(); 
+
 }                   
 
 
@@ -495,7 +496,7 @@ int PTask(void)
     {
       ButtonPressingX=1;//Button is now pressed
       XTaskActiv=1;//Task is now active
-     // Tilt.set(true);
+      doinker.set(true);
     }
 
     else if(!Controller1.ButtonX.pressing())ButtonPressingX=0;
@@ -504,7 +505,7 @@ int PTask(void)
     {
       ButtonPressingX=1;//Button is now pressed
       XTaskActiv=0;//Task is now NOT running
-     // Tilt.set(false);
+      doinker.set(false);
     }
     //----------------------
       //Toggles Clamp

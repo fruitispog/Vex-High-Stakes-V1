@@ -17,4 +17,5 @@ extern void redAWP();
 extern void redSafeAWP();
 extern void redSuperSafe();
 extern void blueSafeAWP();
+extern void blueAWP();
 #endif

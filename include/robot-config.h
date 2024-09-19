@@ -23,6 +23,7 @@ extern motor lift;
 extern const double wheelDiam;
 extern const double wheelToMotorRatio;
 extern optical OpSens;
+extern digital_out doinker;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
