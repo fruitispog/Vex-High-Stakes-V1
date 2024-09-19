@@ -276,7 +276,7 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
-  redSafeAWP();
+  Red9PTRing();
 }
 
 if(AutoSelectorVal==2)// Safe awp
@@ -287,17 +287,17 @@ if(AutoSelectorVal==2)// Safe awp
 
 if(AutoSelectorVal==3)//Risky
 {
-  AWP();
+  blueAWP();
   } 
 
 if(AutoSelectorVal==4)// risky AWP
 {
-  blueSafeAWP();
+  blue9PTRing();
 }
 
 if(AutoSelectorVal==5)// 
 {
- blueAWP(); 
+  
 
 }                   
 

@@ -5,17 +5,10 @@
     only put declarations in this file
 */
 
-extern void test();
-extern void test2();
-extern void risky();
-extern void ringquad();
-extern void MogoRushQual();
-extern void RedMogoRushQual();
-extern void RedSafeMogo();
 extern void AWP();
 extern void redAWP();
-extern void redSafeAWP();
+extern void Red9PTRing();
 extern void redSuperSafe();
-extern void blueSafeAWP();
+extern void blue9PTRing();
 extern void blueAWP();
 #endif
