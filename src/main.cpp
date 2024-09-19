@@ -287,7 +287,7 @@ if(AutoSelectorVal==2)// Safe awp
 
 if(AutoSelectorVal==3)//Risky
 {
-  BlgueRingRedMogo();
+  BlueRingRedMogo();
   } 
 
 if(AutoSelectorVal==4)// risky AWP

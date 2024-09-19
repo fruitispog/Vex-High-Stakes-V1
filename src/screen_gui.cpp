@@ -85,7 +85,7 @@ Brain.Screen.setPenColor(black);
 if(AutoSelectorVal==1){
 Brain.Screen.drawRectangle(1,25,100,50);
   Brain.Screen.setCursor(3,3);
-  Brain.Screen.print("AWP");
+  Brain.Screen.print(" Red9PTRing");
 
 Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
@@ -93,7 +93,7 @@ Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("GOAL SIDE");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("AWP");
+Brain.Screen.print("RED");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#f8b195");
 
@@ -102,7 +102,7 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==2){
 Brain.Screen.drawRectangle(375,25,100,50);
     Brain.Screen.setCursor(3,40);
-  Brain.Screen.print("Risky");
+  Brain.Screen.print("Red Ring Side 4Ring");
 
 Brain.Screen.setFillColor(black);
 
@@ -111,7 +111,7 @@ Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
 //Brain.Screen.print("MATCHLOAD");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Risky");
+Brain.Screen.print("Blue Mogo Side 4Ring");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#f8b195");
 }
@@ -119,14 +119,14 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==3){
   Brain.Screen.drawRectangle(1,100,100,50);
   Brain.Screen.setCursor(7,3);
-  Brain.Screen.print("Safe AWP");
+  Brain.Screen.print("Red Mogo Side 4Ring");
 
 Brain.Screen.setFillColor(black);
 
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#f8b195");
 Brain.Screen.setCursor(3,10);
-//Brain.Screen.print("GOAL SIDE");
+Brain.Screen.print("Blue Ring Side 4Ring");
 Brain.Screen.setCursor(4,10);
 Brain.Screen.print("n/a");
 Brain.Screen.setFont(monoM);  
@@ -136,7 +136,7 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==4){
 Brain.Screen.drawRectangle(375,100,100,50);
   Brain.Screen.setCursor(7,40);
-  Brain.Screen.print("Safe");
+  Brain.Screen.print("blue9PTRing");
 
 Brain.Screen.setFillColor(black);
 
