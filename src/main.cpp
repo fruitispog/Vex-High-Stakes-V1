@@ -9,13 +9,14 @@
 
 //#include "STDLib.cpp"
 #include "vex.h"
-
+#include "math.h"
 #include "screen_gui.hpp"
 #include "movement.hpp"
 #include "routes/routes.hpp"
 #include <iostream>
 using namespace vex;
 using namespace std;
+
 // A global instance of competition
 competition Competition;
 
@@ -36,19 +37,23 @@ bool SP;
 bool EXIT;
 bool Inversion_Constant;
 void pre_auton(void) {
-  
+  LiftSensor.resetPosition();
+  LiftSensor.setReversed(true);
   lift.setStopping(brake);
    EXIT=false;
    
   Pistake.set(false);
   OPMECH.set(false);
-  Clamp.set(false);
+  Clamp.set(true);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
   SP=false;
+  
+  
   // Initializing Robot Configuration. DO NOT REMOVE!
   wait(1000,msec);
+  
   vexcodeInit();
   
 Gyro.calibrate();
@@ -276,7 +281,7 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
-  Red9PTRing();
+  Simple6();
 }
 
 if(AutoSelectorVal==2)// Safe awp
@@ -287,7 +292,7 @@ if(AutoSelectorVal==2)// Safe awp
 
 if(AutoSelectorVal==3)//Risky
 {
-  BlueRingRedMogo();
+  MogoRush();
   } 
 
 if(AutoSelectorVal==4)// risky AWP
@@ -352,13 +357,14 @@ int arraynumber2;
 int arraynumber3;
 int arrarnumber4;
 vex::timer Timer;
+
 int ATask(void)
 {
   
   double pow;
   if(Inversion_Constant == true)
   {
-    arraynumber = 350;
+    arraynumber = 0;
     arraynumber2 = 10;
     arraynumber3 = 200;
     arrarnumber4 = 270;
@@ -366,12 +372,12 @@ int ATask(void)
   }
   else if (Inversion_Constant == false)
   {
-    arraynumber = 200;
-    arraynumber2 = 270;
-    arraynumber3 =350;
-    arrarnumber4 = 10;
+    arraynumber = 0;
+    arraynumber2 = 10;
+    arraynumber3 = 200;
+    arrarnumber4 = 270;
   }
-  
+
   OpSens.integrationTime(5);
   OpSens.setLightPower(100,percent);
   double powl; //powl is the power for lift
@@ -465,8 +471,7 @@ int ATask(void)
         }
       
     }*/
-    powl = (Controller1.ButtonL2.pressing() - Controller1.ButtonL1.pressing()) * 100;
-    RunLift(-powl);
+    
     }
 
     // Control lift power based on button presses
@@ -566,16 +571,83 @@ int PTask(void)
   }
   
 
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              User Control Task                            */
-/*                                                                           */
-/*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
+int ButtonPressingL, LTaskActiv;
+int BTask(void) {
+  int mvel = 0;
+  int pow1 = 0;
+ 
+  while(true) {
+    cout<<(LiftSensor.position(degrees))<<endl;
+    
+    if(LTaskActiv==1) {
+      if(abs(LiftSensor.position(degrees)) < 350) {
+        RunLift(-100);
+        if(abs(LiftSensor.position(degrees)) > 340) {
+          LTaskActiv = 0;
+        }
+      } 
+      else if(abs(LiftSensor.position(degrees)) > 340) {
+        RunLift(100);
+        if(abs(LiftSensor.position(degrees)) < 350) {
+          LTaskActiv = 0;
+        }
+      } 
+    }
+    else {
+      pow1=((Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*75);//Calculate intake power, if button pressed, button.pressing returns 1
+      if(pow1==0) {
+        lift.setStopping(hold);
+        lift.stop();
+      }
+      else {
+        RunLift(pow1);
+      }
+    }
 
+// copy of macro so if i break it i still have a backup 
+  // while(true) {
+  //   if(abs(LiftSensor.position(degrees)) <= 19 && YTaskActiv==1) {
+  //     mvel = (90 - LiftSensor.position(vex::rotationUnits::deg)) 1.25; //301.81
+  //     RunLift(-100);
+  //     std::cout << mvel << std::endl; //test
+  //     if(abs(LiftSensor.position(degrees)) > 19) {
+  //       YTaskActiv = 0;
+  //     }
+  //   }
+  //   else {
+  //     pow1=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
+  //     std::cout << mvel << std::endl; //test
+  //     if(pow1==0) {
+  //       Lift.setStopping(hold);
+  //       Lift.stop();
+  //     }
+  //     else {
+  //       RunLift(pow1);
+  //     }
+  //   } 
+
+    //commenting out the button a pressing macro because we do not have a rotation sensor for now
+
+    if(Controller1.ButtonLeft.pressing() && ButtonPressingL == 0) {
+      ButtonPressingL=1;
+      LTaskActiv=1;
+    }
+
+    else if(!Controller1.ButtonLeft.pressing())ButtonPressingL=0;
+
+    else if(LTaskActiv==1&&Controller1.ButtonLeft.pressing()&&ButtonPressingL==0) {
+      ButtonPressingL=1;
+      LTaskActiv=0;
+      RunLift(0);
+    }
+
+
+  }
+  return 0;
+}
+//
+// Main will set up the competition functions and callbacks.
+//
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
   // User control code here, inside the loop
@@ -589,6 +661,7 @@ void usercontrol(void) {
     task Dtask=task(DriveTask);
     task Atask=task(ATask);
     task Ptask=task(PTask);
+    task Btask = task(BTask);
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
@@ -598,11 +671,6 @@ void usercontrol(void) {
                     // prevent wasted resources.
   }
 }
-
-//
-// Main will set up the competition functions and callbacks.
-//
-
 
 int main() {
   

@@ -205,7 +205,7 @@ void TurnMaxTimePID(PIDDataSet KVals,double DeltaAngle,double TE, bool brake){
   wait(20, msec);
   }
   if(brake){BStop();
-  wait(180,msec);}
+  wait(100,msec);}
   else CStop();
 }
 

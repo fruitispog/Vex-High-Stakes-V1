@@ -10,5 +10,6 @@ extern void RedRingBlueMogo();
 extern void Red9PTRing();
 extern void redSuperSafe();
 extern void blue9PTRing();
-extern void BlueRingRedMogo();
+extern void MogoRush();
+extern void Simple6();
 #endif
