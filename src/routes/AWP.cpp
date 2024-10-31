@@ -215,36 +215,40 @@ void MogoRush(){
     
 void Simple6(){
   PIDDataSet TestPara={1.5,0.1,0.15};
-  MoveEncoderPID(TestPara, 100,11 , 0.4, 0, false);
-  MoveEncoderPID(TestPara,80 , 6.3, 0.4, 0, false);
+  lift.resetPosition();
+  MoveEncoderPID(TestPara, 100,13 , 0.4, 0, false);
+  MoveEncoderPID(TestPara, 80, 9.6, 0.4, 0, false);
   Clamp.set(false);
   wait(200,msec);
-  MoveEncoderPID(TestPara, 100, 4, 0.3, 0, true);
+  //MoveEncoderPID(TestPara, 100, 3.3 , 0.3, 0, true);
   TurnMaxTimePID(TestPara, 139, 0.6, true);
   RunRoller(90);
-  MoveEncoderPID(TestPara, -100, 25.4, 0.2, 139 ,true);
+  MoveEncoderPID(TestPara, -100, 26.3, 0.2, 139 ,true);
   RunRoller(90);
-  MoveEncoderPID(TestPara, 100, 3, 0.2, 139 ,true);
+  MoveEncoderPID(TestPara, 100, 4, 0.2, 139 ,true);
   TurnMaxTimePID(TestPara, 115, 0.25, true);
-  MoveEncoderPID(TestPara, -100, 15, 0.2, 115, true);
+  MoveEncoderPID(TestPara, -100, 16.5, 0.2, 115, true);
   MoveEncoderPID(TestPara, 100, 10, 0.2, 115, false);
   MoveEncoderPID(TestPara, -100, 13, 0.2, 30, false);
   MoveEncoderPID(TestPara, -100, 26, 0.2, -13, false);
   MoveEncoderPID(TestPara, -100, 23, 0.2, 50, true);
-  MoveEncoderPID(TestPara, -100, 23, 0.2, 60, true);
+  MoveEncoderPID(TestPara, -100, 25, 0.2, 60, true);
   wait(100,msec);
   MoveEncoderPID(TestPara, 100, 25, 0.2, 60, true);
   TurnMaxTimePID(TestPara, -90, 0.5, true);
-  MoveEncoderPID(TestPara, 100, 24, 0.2, -90, true);
+  MoveEncoderPID(TestPara, -100, 25, 0.2, -90, true);
+  lift.setVelocity(60,percent);
+  lift.spinTo(-77, degrees);
   Pistake.set(true);
-  MoveEncoderPID(TestPara, 70, 10, 0.3, -90, true);
+  MoveEncoderPID(TestPara, -70, 20, 0.3, -90, true);
   Pistake.set(false);
   wait(200,msec);
-  MoveEncoderPID(TestPara, -70, 10, 0.3, -90, true);
-  TurnMaxTimePID(TestPara, -50, 0.5, true);
-  MoveEncoderPID(TestPara, -70, 7, 0.5, -50, true);
-  RunLift(-100);
-  wait(300,msec);
-  MoveEncoderPID(TestPara, 70, 7, 0.5, -50, true);
+  MoveEncoderPID(TestPara, 65, 11, 0.3, -90, true);
+  TurnMaxTimePID(TestPara, -27, 0.5, true);
+  MoveEncoderPID(TestPara, -70, 13, 0.5, -27, true);
+  RunLift(-60);
+  wait(150,msec);
+  MoveEncoderPID(TestPara, 70, 5, 0.5, -26, true);
+  lift.setVelocity(100,percent);
   
 }

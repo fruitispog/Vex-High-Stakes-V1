@@ -29,10 +29,10 @@ motor_group Roller = motor_group(In1,In2);
 motor_group lift = motor_group(Lt1, Lt2);
 
 //Pistons
-digital_out Pistake = digital_out(Brain.ThreeWirePort.B);
+digital_out Pistake = digital_out(Brain.ThreeWirePort.C);
 //digital_out Tilt = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-digital_out OPMECH =digital_out(Brain.ThreeWirePort.C);
+digital_out OPMECH =digital_out(Brain.ThreeWirePort.B);
 digital_out doinker = digital_out(Brain.ThreeWirePort.D);
 //Gyro and stuff for PID
 inertial Gyro = inertial(PORT21);
